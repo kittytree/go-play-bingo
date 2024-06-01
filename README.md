@@ -2,7 +2,6 @@
 learning go with bingo
 
 # ToDO
-- play the game, randomly select number if number is in either board visit the number
 - if player has diagonal or line they win round 1
 - if player has 2 diagonal or line they win round 2
 - if player has all filled they win round 3
