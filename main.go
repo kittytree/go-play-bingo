@@ -51,20 +51,20 @@ func main() {
 
 		Letter, Column, Number := caller(game)
 		fmt.Printf("Does anyone have: %s,%v?\n", Letter, Number)
-		time.Sleep(1 * time.Second)
+		time.Sleep(500 * time.Millisecond)
 		for i := 0; i < 5; i++ {
 			if player1.board[i][Column] == strconv.Itoa(Number) {
 				player1.board[i][Column] = " X"
 				fmt.Printf("Match found! for %s\n", player1.name)
 				playerBoardToString(player1)
-				time.Sleep(1 * time.Second)
+				time.Sleep(2000 * time.Millisecond)
 
 			}
 			if computer.board[i][Column] == strconv.Itoa(Number) {
 				computer.board[i][Column] = " X"
 				fmt.Println("Match found! for Computer")
 				playerBoardToString(computer)
-				time.Sleep(1 * time.Second)
+				time.Sleep(2000 * time.Millisecond)
 			}
 		}
 		if checkWon(player1) {

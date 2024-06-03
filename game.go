@@ -116,7 +116,7 @@ func newBoard() [5][5]string {
 func caller(currentGame *game) (Bingo, int, int) {
 	for {
 		randNumber := rand.Intn(100)
-		randBingoColumn := rand.Intn(4)
+		randBingoColumn := rand.Intn(5)
 		randBingoLetter := Bingo(randBingoColumn)
 		mapLetter := bingoColumn[randBingoLetter] + strconv.Itoa(randNumber)
 		_, exists := currentGame.calledNumbers[mapLetter]
