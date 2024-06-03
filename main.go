@@ -58,20 +58,19 @@ func main() {
 				fmt.Printf("Match found! for %s\n", player1.name)
 				playerBoardToString(player1)
 				time.Sleep(2000 * time.Millisecond)
-
+				if checkWon(player1) {
+					player1.won()
+				}
 			}
 			if computer.board[i][Column] == strconv.Itoa(Number) {
 				computer.board[i][Column] = " X"
 				fmt.Println("Match found! for Computer")
 				playerBoardToString(computer)
 				time.Sleep(2000 * time.Millisecond)
+				if checkWon(computer) {
+					computer.won()
+				}
 			}
-		}
-		if checkWon(player1) {
-			player1.won()
-		}
-		if checkWon(computer) {
-			computer.won()
 		}
 	}
 	if player1.winner && computer.winner {

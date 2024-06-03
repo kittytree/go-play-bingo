@@ -38,23 +38,32 @@ func playerBoardToString(player *player) {
 
 func playerWon(player *player) bool {
 	for i := 0; i < 5; i++ {
-		if player.board[i][0] == " X" && player.board[i][1] == " X" && player.board[i][2] == " X" &&
-			player.board[i][3] == " X" && player.board[i][4] == " X" {
+		if (player.board[i][0] == " X" || player.board[i][0] == " O") &&
+			(player.board[i][1] == " X" || player.board[i][1] == " O") &&
+			(player.board[i][2] == " X" || player.board[i][2] == " O") &&
+			(player.board[i][3] == " X" || player.board[i][3] == " O") &&
+			(player.board[i][4] == " X" || player.board[i][4] == " O") {
 			for j := 0; j < 5; j++ {
 				player.board[i][j] = " O"
 			}
 			return true
 		}
-		if player.board[0][i] == " X" && player.board[1][i] == " X" && player.board[2][i] == " X" &&
-			player.board[3][i] == " X" && player.board[4][i] == " X" {
+		if (player.board[0][i] == " X" || player.board[0][i] == " O") &&
+			(player.board[1][i] == " X" || player.board[1][i] == " O") &&
+			(player.board[2][i] == " X" || player.board[2][i] == " O") &&
+			(player.board[3][i] == " X" || player.board[3][i] == " O") &&
+			(player.board[4][i] == " X" || player.board[4][i] == " O") {
 			for j := 0; j < 5; j++ {
 				player.board[j][i] = " O"
 			}
 			return true
 		}
 	}
-	if player.board[0][0] == " X" && player.board[1][1] == " X" && player.board[2][2] == " X" &&
-		player.board[3][3] == " X" && player.board[4][4] == " X" {
+	if (player.board[0][0] == " X" || player.board[0][0] == " O") &&
+		(player.board[1][1] == " X" || player.board[1][1] == " O") &&
+		(player.board[2][2] == " X" || player.board[2][2] == " O") &&
+		(player.board[3][3] == " X" || player.board[3][3] == " O") &&
+		(player.board[4][4] == " X" || player.board[4][4] == " O") {
 		for j := 0; j < 5; j++ {
 			player.board[j][j] = " O"
 		}
