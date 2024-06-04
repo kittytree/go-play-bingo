@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"strconv"
+	"time"
 )
 
 type game struct {
@@ -136,9 +138,72 @@ func caller(currentGame *game) (Bingo, int, int) {
 	}
 }
 
+func checkIfCallerMatch(player *player, column int, number int) {
+	for i := 0; i < 5; i++ {
+		if player.board[i][column] == strconv.Itoa(number) {
+			player.board[i][column] = " X"
+			fmt.Printf("Match found! for %s\n", player.name)
+			playerBoardToString(player)
+			time.Sleep(2000 * time.Millisecond)
+			if checkWon(player) {
+				player.won()
+			}
+		}
+	}
+
+}
+
+func announceWinner(playerA *player, playerB *player) {
+	if playerA.winner && playerB.winner {
+		fmt.Println("It's a tie!")
+		playerBoardToString(playerA)
+		playerBoardToString(playerB)
+	} else if playerA.winner && !playerB.winner {
+		fmt.Printf("%s wins!\n", playerA.name)
+		playerBoardToString(playerA)
+	} else {
+		fmt.Printf("%s wins!\n", playerB.name)
+		playerBoardToString(playerB)
+	}
+}
+
 func checkWon(player *player) bool {
 	if playerWon(player) {
 		player.wins++
 	}
 	return player.wins > 1
+}
+
+func getPlayerName() string {
+	var name string
+	for {
+		fmt.Println("What is your first name?")
+		numberInput, err := fmt.Scanln(&name)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		if numberInput == 1 {
+			break
+		}
+	}
+	return name
+}
+
+func playerBoardChooser(player *player) {
+	var decisionOnBoard string
+	for {
+		player.board = newBoard()
+		playerBoardToString(player)
+		fmt.Println("Are you happy with this board y/n")
+		fmt.Println("If you want a new board say n, if you're happy with it say n")
+		numberInput, err := fmt.Scanln(&decisionOnBoard)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(0)
+		}
+		if numberInput == 1 && decisionOnBoard == "y" {
+			break
+		}
+	}
 }
