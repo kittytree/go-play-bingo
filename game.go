@@ -199,7 +199,7 @@ func playerBoardChooser(player *player) {
 		numberInput, err := fmt.Scanln(&decisionOnBoard)
 		if err != nil {
 			fmt.Println(err)
-			os.Exit(0)
+			os.Exit(1)
 		}
 		if numberInput == 1 && decisionOnBoard == "y" {
 			break
