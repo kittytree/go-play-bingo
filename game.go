@@ -123,6 +123,21 @@ func newBoard() [5][5]string {
 	intBoard[2][2] = " X"
 	return intBoard
 }
+func getPlayerName() string {
+	var name string
+	for {
+		fmt.Println("What is your first name?")
+		numberInput, err := fmt.Scanln(&name)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		if numberInput == 1 {
+			break
+		}
+	}
+	return name
+}
 
 func caller(currentGame *game) (Bingo, int, int) {
 	for {
@@ -174,29 +189,13 @@ func checkWon(player *player) bool {
 	return player.wins > 1
 }
 
-func getPlayerName() string {
-	var name string
-	for {
-		fmt.Println("What is your first name?")
-		numberInput, err := fmt.Scanln(&name)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		if numberInput == 1 {
-			break
-		}
-	}
-	return name
-}
-
 func playerBoardChooser(player *player) {
 	var decisionOnBoard string
 	for {
 		player.board = newBoard()
 		playerBoardToString(player)
 		fmt.Println("Are you happy with this board y/n")
-		fmt.Println("If you want a new board say n, if you're happy with it say n")
+		fmt.Println("If you're happy with it say y, if you want a new board say n")
 		numberInput, err := fmt.Scanln(&decisionOnBoard)
 		if err != nil {
 			fmt.Println(err)
